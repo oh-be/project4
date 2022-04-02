@@ -1,4 +1,4 @@
-# Project 4: Prediciting Housing Market Prices
+# Project 4: Prediciting Residential Property Investment
 ## Team Members
 * John Tanasijevich
 * Omar Bernal
