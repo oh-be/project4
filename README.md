@@ -1,4 +1,9 @@
 # Project 4: Prediciting Housing Market Prices
+## Team Members
+* John Tanasijevich
+* Omar Bernal
+* Victor Diaz
+* Victoria Barbosa Munoz
 ## Datasets Used
 * Home Value Dataset - Smoothed, seasonally adjusted measure of the typical home value and market changes across a given region for Single-Family Residences
 
