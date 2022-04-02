@@ -11,3 +11,6 @@
 
 * Cook County Price Index Data: 
 [2021_q2_price_index_data.xlsx](https://github.com/tanasijevich/project4/files/8403066/2021_q2_price_index_data.xlsx)
+## Dataset Sources
+* https://price-index.housingstudies.org/
+* https://www.zillow.com/research/data/
