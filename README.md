@@ -2,7 +2,7 @@
 ## Team Members
 * John Tanasijevich
 * Omar Bernal
-* Victor Diaz
+* Victor M Diaz
 * Victoria Barbosa Munoz
 ## Problem We are Analyzing
 We are trying to create an accurate forecast model on which residential properties are a good investment right now.
