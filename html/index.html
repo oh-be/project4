@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Property Value Calculator</title>
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+    <body>
+        <main class="mortgage-form-wrapper">
+            <header>
+                <h1>Property Value Calculator </h1>
+            </header>
+            <form id="mortgage-form" action="" class="mortgage-form">
+                <div class="mortgage-form--row">
+                    <label for="amount-input">Location</label>
+                    <input type="text" name="amount-input" id="amount-input" min="50000" placeholder="Chicago" required>
+                    <p class="mortgage-form--help">ex: Chicago, Evanston, etc.</p>
+                </div>
+                <div class="mortgage-form--row">
+                    <label for="interest-rate-input">Interest rate</label>
+                    <input type="number" name="amount-input" id="interest-rate-input" min="1" max="20" placeholder="Min 1% max 20%" required>
+                    <p class="mortgage-form--help">Min 1% max 20%, without '%' symbol</p>
+                </div>
+                <div class="mortgage-form--row">
+                    <label for="length-of-loan-input">Price of Home</label>
+                    <input type="number" name="amount-input" id="length-of-loan-input" min="1" max="40000000" placeholder="Max Price of USD$40,000,000" required>
+                    <p class="mortgage-form--help">Full Cost of Property</p>
+                </div>
+                <div class="mortgage-form--row mortgage-form--row__button-wrapper">
+                    <button type="button" id="calculate-btn">Calculate</button>
+                    <button type="reset" id="reset-btn" class="reset-btn">Reset</button>
+                </div>
+            </form>
+            <p class="motgage-result"><span id="mortgage-final-result"></span></p>
+        </main>
+        <p class="photo-credit"><a href="https://unsplash.com/photos/JXI2Ap8dTNc" title="Viewe original image">Background image: Tierra Mallorca (Unsplash)</a></p>
+        <script src="index.pack.js"></script>
+    </body>
+</html>
