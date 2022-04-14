@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/13314/Desktop/project4/mlruns/0/fd52d8d816d442c4ac867a89b4484c53/artifacts
+end_time: 1649818768931
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: fd52d8d816d442c4ac867a89b4484c53
+run_uuid: fd52d8d816d442c4ac867a89b4484c53
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1649816278735
+status: 3
+tags: []
+user_id: '13314'
