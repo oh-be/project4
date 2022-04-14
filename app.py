@@ -6,7 +6,7 @@ import numpy as np
 
 app = Flask(__name__)
 
-model = load_model('Regression_rent_model')
+model = load_model('Regression_best_model')
 cols = ['Latitude', 'Longitude', 'SalePrice']
 
 @app.route('/')
