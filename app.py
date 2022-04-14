@@ -2,17 +2,19 @@ import numpy as np
 import pandas as pd
 from flask import Flask, request, render_template
 from sklearn import preprocessing
+from pycaret.regression import *
 import Pipeline
 import pickle
 
+
 app = Flask(__name__)
-model = pickle.load(open('Regression_insurance.model.pkl', 'rb'))
-model2 = pickle.load(open('Regression_maintenance.model.pkl', 'rb'))
-model3 = pickle.load(open('Regression_rent.model.pkl', 'rb'))
-model4 = pickle.load(open('Regression_tax.model.pkl', 'rb'))
+model = load_model('Regression_insurance_model.pkl')
+model2 = load_model('Regression_maintenance_model.pkl')
+model3 = load_model('Regression_rent_model.pkl')
+model4 = load_model('Regression_tax_model.pkl')
 cols=['Latitude', 'Longitude', 'SalePrice']
 
-@app.route('/')
+@app.route('/') 
 def home():
     return render_template('index.html')
 
@@ -36,7 +38,7 @@ def predict():
     
     return int(total_price, insurance, maintenance, rent, taxes)
 
-@app.route('/pipeline')
+@app.route('/pipeline',methods=['POST'])
 def pipeline():
     pipe_data = Pipeline.investment_calc(total_price, insurance, maintenance, rent, taxes)
     return render_template('index.html', prediction_text = pipe_data)

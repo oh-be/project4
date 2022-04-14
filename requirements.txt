@@ -41,3 +41,6 @@ scipy>=0.15.1
 scikit-learn>=0.18
 matplotlib>=1.4.3
 pandas>=0.19
+certifi==2019.11.28
+itsdangerous==1.1.0
+pycaret==1.0.0

@@ -1,9 +1,5 @@
-import matplotlib.pyplot as plt 
-from matplotlib.pylab import rcParams
 import pandas as pd
-import scipy.stats as sts
 import numpy as np
-%matplotlib inline
 
 
 def investment_calc(rent, total_price, maintenance, insurance, taxes): 
@@ -39,10 +35,10 @@ def investment_calc(rent, total_price, maintenance, insurance, taxes):
     #return c_rate
     
     results = {
-        'Cap Rate': c_rate
-        'Gross Rent Multiplier': GRM
-        'Net Operating income (Monthly)': noi_monthly
-        'Net Operating income (Annual)': noi_yearly
+        'Cap Rate': c_rate,
+        'Gross Rent Multiplier': GRM,
+        'Net Operating income (Monthly)': noi_monthly,
+        'Net Operating income (Annual)': noi_yearly,
         'Is the One Percent Rule in effect?': boolean
     }
     
