@@ -1,107 +1,46 @@
-# import necessary libraries
-# from models import create_classes
+import numpy as np
 import pandas as pd
-import os
-import sqlalchemy
-from sqlalchemy.ext.automap import automap_base
-from sqlalchemy.orm import Session
-from sqlalchemy import create_engine, func
-from sqlite3 import connect 
-import json
-
-from flask import (
-    Flask,
-    render_template,
-    jsonify,
-    request,
-    redirect,
-    jsonify)
-
-
-#####################################################################
-
-engine = create_engine("sqlite:///data/cookcounty.db")
-
-# reflect an existing database into a new model
-Base = automap_base()
-# reflect the tables
-Base.prepare(engine, reflect=True)
-
-# Save reference to the table
-print(Base.classes.keys())
-
-Healthatlas = Base.classes.healthatlas
-#Actors = Base.classes.actors
-
-#################################################
-
-# Flask Setup
-
-#################################################
+from flask import Flask, request, render_template
+from sklearn import preprocessing
+import Pipeline
+import pickle
 
 app = Flask(__name__)
+model = pickle.load(open('Regression_insurance.model.pkl', 'rb'))
+model2 = pickle.load(open('Regression_maintenance.model.pkl', 'rb'))
+model3 = pickle.load(open('Regression_rent.model.pkl', 'rb'))
+model4 = pickle.load(open('Regression_tax.model.pkl', 'rb'))
+cols=['Latitude', 'Longitude', 'SalePrice']
 
-# ---------------------------------------------------------
-
-# Web site
-@app.route("/")
+@app.route('/')
 def home():
-    return render_template("index.html")
+    return render_template('index.html')
 
-@app.route("/data.html")
-def data():
-
-    return render_template("data.html")
-
-@app.route("/templates/map.html")
-def map():
-
-    return render_template("map.html")
-
-@app.route("/templates/d3_chart.html")
-
-def d3_chart():
-    return render_template("d3_chart.html")
-
-
-# ---------------------------------------------------------
-
-# API to call "when data.html" page is loading with community information table
-@app.route("/api/community")
-def community_grid():
-    session = Session(engine)
+@app.route('/predict',methods=['POST'])
+def predict():
+    feature_list = request.form.to_dict()
+    feature_list = list(feature_list.values())
+    feature_list = list(map(int, feature_list))
+    Latitude,Longitude,total_price = feature_list
+    final_features2 = np.array(feature_list).reshape(1, 3) 
+    final_features = np.array(feature_list).reshape(1, 3) 
     
-    results = [list(r) for r in results]
-
-    table_results = {
-        "table": results
-    }
+    prediction = model.predict(final_features)
+    prediction2 = model2.predict(final_features)
+    prediction3 = model3.predict(final_features2)
+    prediction4 = model4.predict(final_features)
     
+    insurance = int(prediction[0])
+    maintenance = int(prediction2[0])
+    rent = int(prediction3[0])
+    taxes = int(prediction4[0] / 12)
     
-    session.close()
-    
-    return jsonify(table_results)
+    return int(total_price, insurance, maintenance, rent, taxes)
 
-
-@app.route("/api/geojson")
-def map_data():
-    with open('data/geo.json', 'r') as file:
-        your_data = json.loads(file.read())
-    # print(your_data)
-    return jsonify(your_data)
-
-@app.route('/api/d3_chart/<field_x>/<field_y>')
-def d3_chart_api(field_x, field_y):
-    session = Session(engine)
-    x_column = getattr(Healthatlas, field_x)
-    y_column = getattr(Healthatlas, field_y)
-    results = session.query(x_column, y_column).all()
-    results = [list(r) for r in results]
-    session.close()
-    return jsonify(results)
-
-
-
+@app.route('/pipeline')
+def pipeline():
+    pipe_data = Pipeline.investment_calc(total_price, insurance, maintenance, rent, taxes)
+    return render_template('index.html', prediction_text = pipe_data)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
