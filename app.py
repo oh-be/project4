@@ -19,7 +19,8 @@ from flask import (
 
 
 #####################################################################
-engine = create_engine("sqlite:///data/mydatabase.db")
+
+engine = create_engine("sqlite:///data/cookcounty.db")
 
 # reflect an existing database into a new model
 Base = automap_base()
@@ -33,10 +34,15 @@ Healthatlas = Base.classes.healthatlas
 #Actors = Base.classes.actors
 
 #################################################
+
 # Flask Setup
+
 #################################################
+
 app = Flask(__name__)
+
 # ---------------------------------------------------------
+
 # Web site
 @app.route("/")
 def home():
@@ -53,10 +59,9 @@ def map():
     return render_template("map.html")
 
 @app.route("/templates/d3_chart.html")
+
 def d3_chart():
     return render_template("d3_chart.html")
-
-
 
 
 # ---------------------------------------------------------
