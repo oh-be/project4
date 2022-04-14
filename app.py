@@ -22,12 +22,11 @@ def predict():
     feature_list = list(feature_list.values())
     feature_list = list(map(int, feature_list))
     Latitude,Longitude,total_price = feature_list
-    final_features2 = np.array(feature_list).reshape(1, 3) 
     final_features = np.array(feature_list).reshape(1, 3) 
     
     prediction = model.predict(final_features)
     prediction2 = model2.predict(final_features)
-    prediction3 = model3.predict(final_features2)
+    prediction3 = model3.predict(Latitude,Longitude)
     prediction4 = model4.predict(final_features)
     
     insurance = int(prediction[0])
