@@ -1,33 +1,35 @@
 <!DOCTYPE html>
-<html >
-<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>ML Deployment using Heroku</title>
-    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <meta charset="UTF-8">
+  <title>NuInvestment</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='./style.css') }}">
+  
 </head>
 
 <body>
-    <div class="prediction">
-        <h1>Investment Calculator</h1>
-        <form action="{{ url_for('predict')}}"method="post">
-		<label for="Latitude">Latitude Coordinate</label>
-		<input type="number" placeholder="1.0" id="Latitude" name="Latitude" required="required">
-		<br>
-    		<label for="Longitude">Longitude</label>
-    		<input type="number" placeholder="1.0" id="Longitude" name="Longitude" required="required">
-    		<br>
-		<label for="SalePrice">SalePrice</label>
-            <input type="number" placeholder="1.0" id="SalePrice" name="SalePrice" required="required">
-    		<br>
-        	<button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-        </form>
+ <div class="login">
+	<h1>NuInvestment</h1>
 
-       <br>
-       <b>{{ prediction_text }}</b>
-    </div>
+     <!-- Form to enter new data for predictions  -->
+    <form action="{{ url_for('predict')}}"method="POST">
+      <input type="number" name="Latitude" placeholder="Latitude Coordinate" required="required" /><br>
+    	<input type="number" name="Longitude" placeholder="Longitude Coordinate" required="required" /><br>
+        <input type="number" name="SalePrice" placeholder="Property Price" required="required" /><br>
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Estimate Rent</button>
+    </form>
+
+   <br>
+   <br>
+  
+   
+ </div>
+ {{pred}}
+
 </body>
 </html>
